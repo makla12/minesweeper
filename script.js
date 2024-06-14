@@ -24,9 +24,9 @@ const hard = () => {
 }
 
 const gameSetup = () => {
-    rows = document.getElementById("rows").value;
-    colums = document.getElementById("colums").value;
-    mines = document.getElementById("mines").value;
+    rows = Number(document.getElementById("rows").value);
+    colums = Number(document.getElementById("colums").value);
+    mines = Number(document.getElementById("mines").value);
     if(rows * colums - 9  < 9){
         alert("You must have room for at least 9 non mine cells");
         return 0;
