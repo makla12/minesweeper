@@ -7,16 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="gameInfo">
-        <div style="display: flex; gap: 3rem;">
-            <div id="back" class="btn" style="width: 4rem; aspect-ratio:1/1;" onclick="window.location = 'index.html'"><img src="images/back.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
-            <div id="back" class="btn" style="width: 4rem; aspect-ratio:1/1;" onclick="startGame()"><img src="images/restart.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
+    <div id="dificulty">
+        <div class="btn" style="width: 4rem; aspect-ratio:1/1;position: absolute; left: 5vw;top: 2vh;" onclick="window.location = 'index.html'"><img src="images/back.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
+        <h1 style="text-align: center;font-size: 4rem;">Select dificulty</h1>
+        <div style="width: 27rem; margin:4rem auto; display: flex; gap: 3rem;">
+            <div onclick="easy()" class="btn" style="width: 6rem;height: 3rem;">Easy</div>
+            <div onclick="medium()" class="btn" style="width: 6rem;height: 3rem;">Medium</div>
+            <div onclick="hard()" class="btn" style="width: 6rem;height: 3rem;">Hard</div>
         </div>
-        <div style="font-size: 2rem;width: 10rem;" id="mineCounter">0</div>
-        <div style="font-size: 2rem; width: 9rem;" id="time">0s</div>
+        <div id="custom" style="width: 36rem; margin:4rem auto; display: flex; flex-direction: column; gap: 2rem;">
+            <label style="text-align: center;font-size: 2rem;">Rows:<input type="number" value="34" class="form-control" id="rows"></label>
+            <label style="text-align: center;font-size: 2rem;">Colums:<input type="number" value="40" class="form-control" id="colums"></label>
+            <label style="text-align: center;font-size: 2rem;">Mines:<input type="number" value="200" class="form-control" id="mines"></label>
+        </div>
+        <div class="btn" onclick="gameSetup()" style="margin:0 auto; width: 8rem;height: 3rem;">Start game</div>
     </div>
-    <div id="gameBoard">
-        
+
+    <div id="game" style="display: none;">
+        <div id="gameInfo">
+            <div style="display: flex; gap: 3rem;">
+                <div class="btn" style="width: 4rem; aspect-ratio:1/1;" onclick="window.location = 'index.html'"><img src="images/back.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
+                <div class="btn" style="width: 4rem; aspect-ratio:1/1;" onclick="startGame()"><img src="images/restart.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
+            </div>
+            <div style="font-size: 2rem;width: 10rem;" id="mineCounter">0</div>
+            <div style="font-size: 2rem; width: 9rem;" id="time">0s</div>
+        </div>
+        <div id="gameBoard">
+            
+        </div>
     </div>
 
     <div id="winAlert" class="alert">
@@ -26,6 +44,7 @@
                 <div style="font-size: 2rem;" id="timeEnd">0s</div>
             </div>
             <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('winAlert').style.display = 'none';startGame()">Play again</div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('winAlert').style.display = 'none';document.getElementById('dificulty').style.display = 'block';document.getElementById('game').style.display = 'none';">Change dificulty</div>
             <div class="btn" style="width: 15rem; height: 4rem;" onclick="window.location = 'index.html'">Main menu</div>
         </div>
     </div>
@@ -35,7 +54,8 @@
             <div style="display: flex; flex-direction: column;">
                 <div style="font-size: 5rem;">You lose</div>
             </div>
-            <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('loseAlert').style.display = 'none';startGame()">Play again</div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('loseAlert').style.display = 'none';startGame()">Try again</div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('loseAlert').style.display = 'none';document.getElementById('dificulty').style.display = 'block';document.getElementById('game').style.display = 'none';">Change dificulty</div>
             <div class="btn" style="width: 15rem; height: 4rem;" onclick="window.location = 'index.html'">Main menu</div>
         </div>
     </div>

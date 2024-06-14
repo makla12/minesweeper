@@ -5,6 +5,75 @@ board.addEventListener("contextmenu", (e) => {
 });
 let rows = 34, colums = 60, mines = 300, time = 0, timer, cells, digCount;
 
+const easy = () => {
+    document.getElementById("rows").value = 34;
+    document.getElementById("colums").value = 40;
+    document.getElementById("mines").value = 100;
+}
+
+const medium = () => {
+    document.getElementById("rows").value = 34;
+    document.getElementById("colums").value = 40;
+    document.getElementById("mines").value = 200;
+}
+
+const hard = () => {
+    document.getElementById("rows").value = 34;
+    document.getElementById("colums").value = 40;
+    document.getElementById("mines").value = 300;
+}
+
+const gameSetup = () => {
+    rows = document.getElementById("rows").value;
+    colums = document.getElementById("colums").value;
+    mines = document.getElementById("mines").value;
+    if(rows * colums - 9  < 9){
+        alert("You must have room for at least 9 non mine cells");
+        return 0;
+    }
+    document.getElementById("dificulty").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    startGame();
+}
+
+//Generate board
+const startGame = () =>{
+    board.innerHTML = "";
+    document.getElementById("mineCounter").textContent = mines;
+    cells = [];
+    digCount = 0;
+    for(let i = 0; i < rows; i++){
+        cells.push([]);
+        let row = document.createElement("div");
+        row.classList.add("row");
+        for(let j = 0; j < colums; j++){
+            cells[i].push(
+                {
+                    value:0,
+                    flaged:false,
+                    cleared:false,
+                    row:i,
+                    col:j
+                }
+            );
+            let cellDiv = document.createElement("div");
+            cellDiv.classList.add("cellDiv");
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.id = `${i};${j}`;
+            cell.onclick = () => {easyDig(i,j);easyFlag(i,j);handleDig(i,j);}
+            cell.oncontextmenu = () => flag(i,j);
+            cellDiv.appendChild(cell);
+            let cellT = document.createElement("span");
+            cellT.id = `${i};${j}T`;
+            cellDiv.appendChild(cellT);
+            row.appendChild(cellDiv);
+        }
+        board.appendChild(row);
+    }
+    board.style.width = colums * 37 + "px";
+}
+
 //Timer
 const formatTime = (x) => {
     let sec = time % 60;
@@ -145,42 +214,6 @@ const handleDig = (x,y) => {
     if(dig(x,y) == -1) lose();
 }
 
-const startGame = () =>{
-    board.innerHTML = "";
-    document.getElementById("mineCounter").textContent = mines;
-    cells = [];
-    digCount = 0;
-    for(let i = 0; i < rows; i++){
-        cells.push([]);
-        let row = document.createElement("div");
-        row.classList.add("row");
-        for(let j = 0; j < colums; j++){
-            cells[i].push(
-                {
-                    value:0,
-                    flaged:false,
-                    cleared:false,
-                    row:i,
-                    col:j
-                }
-            );
-            let cellDiv = document.createElement("div");
-            cellDiv.classList.add("cellDiv");
-            let cell = document.createElement("div");
-            cell.classList.add("cell");
-            cell.id = `${i};${j}`;
-            cell.onclick = () => {easyDig(i,j);easyFlag(i,j);handleDig(i,j);}
-            cell.oncontextmenu = () => flag(i,j);
-            cellDiv.appendChild(cell);
-            let cellT = document.createElement("span");
-            cellT.id = `${i};${j}T`;
-            cellDiv.appendChild(cellT);
-            row.appendChild(cellDiv);
-        }
-        board.appendChild(row);
-    }
-}
-
 const win = () => {
     stopTimer();
     document.getElementById("timeEnd").innerHTML = formatTime(time);
@@ -191,4 +224,3 @@ const lose = () => {
     stopTimer();
     document.getElementById("loseAlert").style.display = "flex";
 }
-startGame();
