@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameInfo">
+        <div style="display: flex; gap: 3rem;">
+            <div id="back" class="btn" style="width: 4rem; aspect-ratio:1/1;" onclick="window.location = 'index.html'"><img src="images/back.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
+            <div id="back" class="btn" style="width: 4rem; aspect-ratio:1/1;" onclick="startGame()"><img src="images/restart.svg" alt="Back" width="70%" height="70%" style="filter: invert(80%);"></div>
+        </div>
+        <div style="font-size: 2rem;width: 10rem;" id="mineCounter">0</div>
+        <div style="font-size: 2rem; width: 9rem;" id="time">0s</div>
+    </div>
+    <div id="gameBoard">
+        
+    </div>
+
+    <div id="winAlert" class="alert">
+        <div class="alertDiv">
+            <div style="display: flex; flex-direction: column;">
+                <div style="font-size: 5rem;">You win</div>
+                <div style="font-size: 2rem;" id="timeEnd">0s</div>
+            </div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('winAlert').style.display = 'none';startGame()">Play again</div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="window.location = 'index.html'">Main menu</div>
+        </div>
+    </div>
+
+    <div id="loseAlert" class="alert">
+        <div class="alertDiv">
+            <div style="display: flex; flex-direction: column;">
+                <div style="font-size: 5rem;">You lose</div>
+            </div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="document.getElementById('loseAlert').style.display = 'none';startGame()">Play again</div>
+            <div class="btn" style="width: 15rem; height: 4rem;" onclick="window.location = 'index.html'">Main menu</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

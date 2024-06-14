@@ -1,0 +1,136 @@
+body{
+    background-color: #0d161d;
+    color: #b9c3cd;
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.btn{
+    border-radius: 2rem;
+    border: 0.15rem solid #2c3943;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.btn:hover{
+    background-color: #40a1cc;
+    border-color: #40a1cc;
+    color: black;
+    cursor: pointer;
+}
+
+#gameInfo{
+    z-index: 1;
+    width: 100%;
+    background-color: #0d161d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.5rem 0 0.5rem 0;
+    text-align: center;
+}
+
+#gameBoard{
+    margin: 6rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.row{
+    display: flex;
+}
+
+.cellDiv{
+    width: 35px;
+    height: 35px;
+    border: 0.1rem solid #3a4650;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family:monospace;
+    color: white;
+}
+
+@keyframes flag{
+    from{background-color: #40a1cc;transform: scale(1);}
+    to{background-color: #7e8e9d;transform: scale(0.85);}
+}
+@keyframes deflag {
+    from{background-color: #7e8e9d;transform: scale(0.85);}
+    to{background-color: #40a1cc;transform: scale(1);}
+}
+@keyframes dig {
+    from{transform: scale(1);background-color: #40a1cc;}
+    to{transform: scale(0);background-color: #40a1cc;}
+}
+
+.cell{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #40a1cc;
+    animation-duration: 300ms;
+}
+
+.cellFlaged{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    transform: scale(0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7e8e9d;
+    animation-duration: 300ms;
+}
+
+.cellCleared{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-duration: 600ms;
+    animation-timing-function:cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.cell:hover{
+    background-color: #286781;
+}
+
+.alert{
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.alertDiv{
+    width: 30rem;
+    height: 50rem;
+    border-radius: 4rem;
+    background-color: #0d161d;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
